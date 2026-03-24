@@ -726,6 +726,7 @@
 
 </main>
 
+<script src="payments-private.js"></script>
 <script>
 /* ─── PASSWORD ─── */
 const PW_HASH = '940b7f1bcfc00589d9a5e1f714e25f92f6cf8b8ae36ff55f60a457ac43f773f6';
@@ -862,29 +863,8 @@ const MENU_SECTIONS = [
   ]},
 ];
 
-const PAYMENTS = [
-  {date:'2025-10-02', vendor:'Asher Gardner Photography',  desc:'Retainer — 30%',                  amount:4290.00,  status:'paid'},
-  {date:'2025-10-02', vendor:'Night Shift Entertainment',  desc:'Deposit — 50%',                   amount:9250.00,  status:'paid'},
-  {date:'2025-10-15', vendor:'Hana Floral Design',         desc:'Deposit — 30%',                   amount:4926.93,  status:'paid'},
-  {date:'2025-11-06', vendor:'Simply Gorgeous by Erin',    desc:'Retainer — 25%',                  amount:517.50,   status:'paid'},
-  {date:'2025-11-20', vendor:'One for the Books Events',   desc:'Deposit — 25%',                   amount:1850.00,  status:'paid'},
-  {date:'2025-11-21', vendor:'Sperry Tents',               desc:'Deposit — 50%',                   amount:7636.32,  status:'paid'},
-  {date:'2025-12-02', vendor:'85th Day Group',             desc:'1st Installment',                 amount:1500.00,  status:'paid'},
-  {date:'2026-01-04', vendor:'Asher Gardner Photography',  desc:'2nd Payment — 30%',               amount:4290.00,  status:'paid'},
-  {date:'2026-01-04', vendor:'One for the Books Events',   desc:'6-month Installment — 25%',       amount:1850.00,  status:'paid'},
-  {date:'2026-01-19', vendor:'Specialty Transportation',   desc:'Deposit — 50%',                   amount:1595.00,  status:'paid'},
-  {date:'2026-03-01', vendor:'Simply Gorgeous by Erin',    desc:'2nd Payment',                     amount:517.50,   status:'overdue'},
-  {date:'2026-04-04', vendor:'One for the Books Events',   desc:'3-month Installment — 25%',       amount:1850.00,  status:'upcoming'},
-  {date:'2026-04-05', vendor:'85th Day Group',             desc:'2nd Installment — 90 days prior', amount:15765.05, status:'upcoming'},
-  {date:'2026-06-04', vendor:'Asher Gardner Photography',  desc:'Final Payment — 40%',             amount:5720.00,  status:'upcoming'},
-  {date:'2026-06-04', vendor:'Specialty Transportation',   desc:'Balance',                         amount:1695.00,  status:'upcoming'},
-  {date:'2026-06-06', vendor:'Hana Floral Design',         desc:'Final Balance — 70%',             amount:11496.16, status:'upcoming'},
-  {date:'2026-06-20', vendor:'One for the Books Events',   desc:'Final Payment — 25%',             amount:1850.00,  status:'upcoming'},
-  {date:'2026-06-20', vendor:'Simply Gorgeous by Erin',    desc:'Final Payment',                   amount:1035.00,  status:'upcoming'},
-  {date:'2026-06-24', vendor:'85th Day Group',             desc:'Final Installment — 10 days prior',amount:15765.05,status:'upcoming'},
-  {date:'2026-06-24', vendor:'Night Shift Entertainment',  desc:'Balance — 50%',                   amount:9250.00,  status:'upcoming'},
-  {date:'2026-07-04', vendor:'Sperry Tents',               desc:'Balance — 50% (due on delivery)', amount:7636.32,  status:'upcoming'},
-];
+// PAYMENTS loaded from payments-private.js (gitignored — not available in public build)
+const PAYMENTS = (typeof window._PAYMENTS !== 'undefined') ? window._PAYMENTS : [];
 
 /* ─── STATE ─── */
 const done = new Set(JSON.parse(localStorage.getItem('ba-done') || '[]').map(Number));
@@ -1059,6 +1039,13 @@ function payStatusInfo(p) {
 }
 
 function renderPayments() {
+  if (!PAYMENTS.length) {
+    document.getElementById('paySummary').innerHTML = '';
+    document.getElementById('payFilters').innerHTML = '';
+    document.getElementById('payMeta').textContent = '';
+    document.getElementById('payTableBody').innerHTML = `<tr><td colspan="5" style="text-align:center;padding:2rem;color:var(--ink-60);font-size:14px;">Payment data is private and not available in the public build.</td></tr>`;
+    return;
+  }
   const totalContract  = PAYMENTS.reduce((s,p) => s + p.amount, 0);
   const totalPaid      = PAYMENTS.filter(p => p.status==='paid').reduce((s,p) => s+p.amount, 0);
   const totalOverdue   = PAYMENTS.filter(p => p.status==='overdue').reduce((s,p) => s+p.amount, 0);

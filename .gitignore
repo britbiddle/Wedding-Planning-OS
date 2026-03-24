@@ -2,3 +2,4 @@ credentials.json
 token.json
 sync_state.json
 *.bak
+payments-private.js
