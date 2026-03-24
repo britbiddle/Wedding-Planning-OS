@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brit & Ali — July 4, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F9F5EF;
+    --warm-white: #FDFAF5;
+    --ink: #1C1A17;
+    --ink-60: rgba(28,26,23,0.6);
+    --ink-30: rgba(28,26,23,0.3);
+    --ink-10: rgba(28,26,23,0.1);
+    --sage: #7A9E7E;
+    --sage-light: #D4E6D6;
+    --blush: #D4907A;
+    --blush-light: #F2DDD7;
+    --gold: #C5983A;
+    --gold-light: #F5E9CE;
+    --navy: #2C3E5C;
+    --navy-light: #D0D8E4;
+    --red: #B94040;
+    --red-light: #F5DADA;
+    --border: rgba(28,26,23,0.12);
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--ink);
+    color: var(--warm-white);
+    padding: 3rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(197,152,58,0.18) 0%, transparent 65%),
+                radial-gradient(ellipse at 20% 80%, rgba(122,158,126,0.15) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(253,250,245,0.55);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    letter-spacing: 0.04em;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .hero-stat { text-align: left; }
+  .hero-stat-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--warm-white);
+  }
+  .hero-stat-num.urgent { color: #E87777; }
+  .hero-stat-num.done { color: var(--sage); }
+  .hero-stat-label {
+    font-size: 11px;
+    color: rgba(253,250,245,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+  .hero-progress-bar {
+    height: 2px;
+    background: rgba(253,250,245,0.12);
+    margin-top: 2rem;
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .hero-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--sage) 0%, var(--gold) 100%);
+    border-radius: 1px;
+    transition: width 0.5s ease;
+  }
+
+  /* ─── NAV ─── */
+  .nav {
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 1rem 1.1rem 0.9rem;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-60);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    letter-spacing: 0.01em;
+  }
+  .nav-btn.active {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+    font-weight: 500;
+  }
+  .nav-btn:hover { color: var(--ink); }
+
+  /* ─── MAIN ─── */
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* ─── PANEL ─── */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* ─── SECTION HEADER ─── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .section-meta {
+    font-size: 12px;
+    color: var(--ink-60);
+    font-family: var(--font-mono);
+  }
+
+  /* ─── FILTERS ─── */
+  .filters {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .filter-chip {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-family: var(--font-body);
+    cursor: pointer;
+    color: var(--ink-60);
+    transition: all 0.15s;
+  }
+  .filter-chip.active {
+    background: var(--ink);
+    color: var(--warm-white);
+    border-color: var(--ink);
+  }
+  .filter-chip:hover:not(.active) { border-color: var(--ink-30); color: var(--ink); }
+
+  /* ─── TASK GROUP ─── */
+  .task-group { margin-bottom: 1.75rem; }
+  .task-group-label {
+    font-size: 10px;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-60);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+
+  /* ─── TASK CARD ─── */
+  .task-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: all 0.15s;
+    cursor: default;
+  }
+  .task-card:hover { border-color: rgba(28,26,23,0.22); }
+  .task-card.done { opacity: 0.38; }
+  .task-card.done .task-title { text-decoration: line-through; }
+
+  .task-check {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    transition: all 0.15s;
+    background: var(--warm-white);
+  }
+  .task-check:hover { border-color: var(--sage); }
+  .task-check.checked { background: var(--sage); border-color: var(--sage); color: white; font-size: 10px; }
+
+  .task-body { flex: 1; min-width: 0; }
+  .task-title-row { display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+  .task-title { font-size: 14px; font-weight: 400; color: var(--ink); line-height: 1.45; }
+  .task-meta { font-size: 12px; color: var(--ink-60); margin-top: 3px; line-height: 1.5; }
+  .task-email-tag {
+    font-size: 10px;
+    font-family: var(--font-mono);
+    color: var(--navy);
+    background: var(--navy-light);
+    border-radius: 3px;
+    padding: 1px 6px;
+    white-space: nowrap;
+    cursor: default;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .pill {
+    display: inline-block;
+    font-size: 10px;
+    font-family: var(--font-mono);
+    border-radius: 3px;
+    padding: 2px 7px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .pill-red { background: var(--red-light); color: var(--red); }
+  .pill-gold { background: var(--gold-light); color: #7A5A1A; }
+  .pill-blush { background: var(--blush-light); color: #8A4530; }
+  .pill-sage { background: var(--sage-light); color: #3A6040; }
+  .pill-navy { background: var(--navy-light); color: var(--navy); }
+
+  /* ─── VENDORS ─── */
+  .vendor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin-top: 1rem;
+  }
+  .vendor-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    position: relative;
+    transition: border-color 0.15s;
+  }
+  .vendor-card:hover { border-color: rgba(28,26,23,0.22); }
+  .vendor-status-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    display: inline-block; margin-right: 6px; flex-shrink: 0;
+  }
+  .dot-green { background: var(--sage); }
+  .dot-amber { background: var(--gold); }
+  .dot-red { background: var(--red); }
+  .vendor-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 2px;
+  }
+  .vendor-role {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--ink-60);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .vendor-detail {
+    font-size: 12px;
+    color: var(--ink-60);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .vendor-action {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--red);
+    background: var(--red-light);
+    border-radius: 3px;
+    padding: 3px 8px;
+  }
+  .vendor-action.note {
+    color: #7A5A1A;
+    background: var(--gold-light);
+  }
+  .vendor-header { display: flex; align-items: center; margin-bottom: 4px; }
+
+  /* ─── WEEKEND ─── */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: var(--border);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+  .tl-dot {
+    position: absolute;
+    left: -24px;
+    top: 5px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--warm-white);
+    border: 2px solid var(--border);
+  }
+  .tl-item.highlight .tl-dot {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+  .tl-day {
+    font-size: 10px;
+    font-family: var(--font-mono);
+    color: var(--ink-60);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .tl-event {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .tl-event-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+  .tl-event-detail {
+    font-size: 12px;
+    color: var(--ink-60);
+    line-height: 1.6;
+  }
+
+  /* ─── REGISTRY ─── */
+  .registry-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 1rem;
+  }
+  .reg-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 13px;
+  }
+  .reg-card-title { font-weight: 500; margin-bottom: 4px; }
+  .reg-card-sub { font-size: 12px; color: var(--ink-60); }
+
+  /* ─── NOTES ─── */
+  .notes-area {
+    width: 100%;
+    min-height: 180px;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--ink);
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.15s;
+    line-height: 1.7;
+  }
+  .notes-area:focus { border-color: rgba(28,26,23,0.3); }
+
+  /* ─── EMPTY ─── */
+  .empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--ink-60);
+  }
+  .empty-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .empty-text { font-size: 14px; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .hero { padding: 2rem 1.25rem 2rem; }
+    .main { padding: 1.5rem 1.25rem; }
+    .hero-stats { gap: 1.25rem; }
+    .hero-stat-num { font-size: 1.8rem; }
+    .vendor-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── PAYMENTS ─── */
+  .payment-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+  .pay-stat {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+  }
+  .pay-stat-num {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .pay-stat-num.clr-overdue { color: var(--red); }
+  .pay-stat-num.clr-remaining { color: var(--gold); }
+  .pay-stat-num.clr-paid { color: var(--sage); }
+  .pay-stat-label {
+    font-size: 10px;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-60);
+  }
+  .pay-table-wrap {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    overflow-x: auto;
+  }
+  .pay-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 520px;
+  }
+  .pay-table th {
+    font-size: 10px;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-60);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    background: var(--cream);
+    white-space: nowrap;
+  }
+  .pay-table td {
+    padding: 11px 14px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .pay-table tr:last-child td { border-bottom: none; }
+  .pay-table tbody tr:hover td { background: rgba(28,26,23,0.02); }
+  .pay-vendor { font-weight: 400; color: var(--ink); line-height: 1.4; }
+  .pay-desc { font-size: 11px; color: var(--ink-60); margin-top: 1px; font-family: var(--font-mono); }
+  .pay-date-cell { font-family: var(--font-mono); font-size: 12px; white-space: nowrap; color: var(--ink-60); }
+  .pay-amount-cell { font-family: var(--font-mono); font-size: 13px; text-align: right; white-space: nowrap; }
+  .pay-amount-cell.clr-overdue { color: var(--red); font-weight: 500; }
+  .status-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-family: var(--font-mono);
+    border-radius: 3px;
+    padding: 2px 7px;
+    white-space: nowrap;
+  }
+  .status-paid { background: var(--sage-light); color: #3A6040; }
+  .status-overdue { background: var(--red-light); color: var(--red); }
+  .status-soon { background: var(--gold-light); color: #7A5A1A; }
+  .status-upcoming { background: var(--navy-light); color: var(--navy); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .panel.active { animation: fadeUp 0.25s ease; }
+
+  /* ─── SEARCH ─── */
+  .search-wrap {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 14px 9px 36px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .search-input:focus { border-color: rgba(28,26,23,0.3); }
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-30);
+    font-size: 14px;
+    pointer-events: none;
+  }
+
+  /* ─── DECORATIVE ─── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.75rem 0;
+  }
+
+  .info-box {
+    background: var(--gold-light);
+    border: 1px solid rgba(197,152,58,0.3);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #5C3D10;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+  }
+  .info-box strong { font-weight: 500; }
+</style>
+</head>
+<body>
+
+<!-- ─── PASSWORD GATE ─── -->
+<div id="pwOverlay" style="position:fixed;inset:0;z-index:9999;background:#F9F5EF;display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;max-width:360px;width:90%;padding:2rem;">
+    <div style="font-family:'Playfair Display',Georgia,serif;font-size:2rem;font-weight:400;color:#1C1A17;margin-bottom:0.25rem;">Brit <em style="font-style:italic;color:#C5983A;">&</em> Ali</div>
+    <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7A9E7E;margin-bottom:2rem;">July 4, 2026</div>
+    <input id="pwInput" type="password" placeholder="Enter password"
+      style="width:100%;padding:0.75rem 1rem;font-family:'DM Sans',sans-serif;font-size:15px;border:1px solid rgba(28,26,23,0.2);border-radius:6px;background:#FDFAF5;color:#1C1A17;outline:none;margin-bottom:0.75rem;"
+      onkeydown="if(event.key==='Enter')checkPassword()">
+    <button onclick="checkPassword()"
+      style="width:100%;padding:0.75rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;background:#1C1A17;color:#FDFAF5;border:none;border-radius:6px;cursor:pointer;letter-spacing:0.02em;">
+      Enter
+    </button>
+    <div id="pwError" style="margin-top:0.75rem;font-size:13px;color:#B94040;min-height:1.2em;"></div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Wedding Planning · Elihu Island, Stonington CT</div>
+    <h1 class="hero-title">Brit <em>&</em> Ali</h1>
+    <div class="hero-sub">July 4, 2026 · Field Day + Welcome Party July 3</div>
+    <div class="hero-stats" id="heroStats"></div>
+    <div class="hero-progress-bar">
+      <div class="hero-progress-fill" id="heroProgress" style="width:0%"></div>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="switchPanel('tasks', this)">Tasks</button>
+    <button class="nav-btn" onclick="switchPanel('vendors', this)">Vendors</button>
+    <button class="nav-btn" onclick="switchPanel('weekend', this)">The Weekend</button>
+    <button class="nav-btn" onclick="switchPanel('menu', this)">Menu</button>
+    <button class="nav-btn" onclick="switchPanel('payments', this)">Payments</button>
+    <button class="nav-btn" onclick="switchPanel('notes', this)">Notes</button>
+  </div>
+</nav>
+
+<main class="main">
+
+  <!-- ─── TASKS ─── -->
+  <div class="panel active" id="panel-tasks">
+    <div class="section-header">
+      <h2 class="section-title">To-Do</h2>
+      <span class="section-meta" id="taskMeta"></span>
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input class="search-input" type="text" placeholder="Search tasks…" id="taskSearch" oninput="renderTasks()">
+    </div>
+    <div class="filters" id="taskFilters"></div>
+    <div id="taskList"></div>
+  </div>
+
+  <!-- ─── VENDORS ─── -->
+  <div class="panel" id="panel-vendors">
+    <div class="section-header">
+      <h2 class="section-title">Vendors</h2>
+      <span class="section-meta">12 booked</span>
+    </div>
+    <div class="vendor-grid" id="vendorGrid"></div>
+  </div>
+
+  <!-- ─── WEEKEND ─── -->
+  <div class="panel" id="panel-weekend">
+    <div class="section-header">
+      <h2 class="section-title">The Weekend</h2>
+      <span class="section-meta">July 3–4, 2026</span>
+    </div>
+    <div class="info-box">
+      <strong>Venue:</strong> 20 Elihu Island Road, Stonington, CT 06378 — Private Property · ~80 wedding guests, ~60 guests on island
+    </div>
+    <div class="timeline" id="weekendTimeline"></div>
+  </div>
+
+  <!-- ─── MENU ─── -->
+  <div class="panel" id="panel-menu">
+    <div class="section-header">
+      <h2 class="section-title">Catering & Cake</h2>
+      <span class="section-meta">85th Day Group + Zest Fresh Pastry</span>
+    </div>
+    <div id="menuContent"></div>
+  </div>
+
+  <!-- ─── PAYMENTS ─── -->
+  <div class="panel" id="panel-payments">
+    <div class="section-header">
+      <h2 class="section-title">Payments</h2>
+      <span class="section-meta" id="payMeta"></span>
+    </div>
+    <div class="payment-summary" id="paySummary"></div>
+    <div class="filters" id="payFilters"></div>
+    <div class="pay-table-wrap">
+      <table class="pay-table">
+        <thead>
+          <tr>
+            <th>Vendor</th>
+            <th>Due Date</th>
+            <th>Description</th>
+            <th style="text-align:right">Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="payTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ─── NOTES ─── -->
+  <div class="panel" id="panel-notes">
+    <div class="section-header">
+      <h2 class="section-title">Notes</h2>
+    </div>
+    <textarea class="notes-area" id="notesArea" placeholder="Add any notes, ideas, or reminders here…" oninput="saveNotes()"></textarea>
+    <div style="margin-top: 8px; font-size: 11px; color: var(--ink-30); font-family: var(--font-mono);">Saved locally in your browser</div>
+  </div>
+
+</main>
+
+<script>
+/* ─── PASSWORD ─── */
+const PW_HASH = '940b7f1bcfc00589d9a5e1f714e25f92f6cf8b8ae36ff55f60a457ac43f773f6';
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+async function checkPassword() {
+  const input = document.getElementById('pwInput');
+  const hash = await sha256(input.value);
+  if (hash === PW_HASH) {
+    sessionStorage.setItem('ba-auth','1');
+    document.getElementById('pwOverlay').style.display = 'none';
+    input.value = '';
+  } else {
+    document.getElementById('pwError').textContent = 'Incorrect password — try again.';
+    input.value = '';
+    input.focus();
+  }
+}
+(function() {
+  if (sessionStorage.getItem('ba-auth') === '1') {
+    document.getElementById('pwOverlay').style.display = 'none';
+  } else {
+    document.getElementById('pwInput').focus();
+  }
+})();
+
+/* ─── XSS HELPER ─── */
+function e(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+const TASKS = [
+  {id:1, title:"Pay Simply Gorgeous by Erin — $400 overdue", cat:"urgent", group:"Action Needed Now", meta:"Due 3/16/26 · Contact: Erin Infantino via HoneyBook portal", email:true},
+  {id:2, title:"Accept proposal changes from Simply Gorgeous by Erin", cat:"urgent", group:"Action Needed Now", meta:"Auto-pay blocked until changes accepted · Alisa followed up 3/18", email:true},
+  {id:3, title:"Reply to Sonsie re: bridal shower (Apr 12)", cat:"urgent", group:"Action Needed Now", meta:"Liz Bona messaged 3/23 · 327 Newbury St, 11AM · check thread for details", email:true},
+  {id:4, title:"Hair & makeup trial — April 17 at 11AM", cat:"now", group:"3–4 Months Out", meta:"Simply Gorgeous by Erin · 31 Liberty St, Southington CT · You + sister", email:true},
+  {id:5, title:"Confirm / book wedding band consult at Rebekah Brooks", cat:"now", group:"3–4 Months Out", meta:"Isabel Ralston reached out 3/14 · Good availability · Cambridge", email:true},
+  {id:6, title:"Review and sign Zest Fresh Pastry cake proposal", cat:"now", group:"3–4 Months Out", meta:"Gabriella sent proposal 3/22 · $100 deposit holds date · design approved (berries + daisies)", email:true},
+  {id:7, title:"Approve 85th Day menu proposal (v4) in HoneyBook", cat:"now", group:"3–4 Months Out", meta:"Sarah sent updated pricing 3/12 · Menu fully locked in · needs HoneyBook approval", email:true},
+  {id:8, title:"Fill out 85th Day Client Worksheet (Google Sheet)", cat:"now", group:"3–4 Months Out", meta:"Shared by Sarah Williams 3/12 · Tracks food, beverage, planning details", email:true},
+  {id:9, title:"Buy alcohol inventory per 85th Day recommendations", cat:"now", group:"3–4 Months Out", meta:"~10-12 cases beer, 6-7 cases wine, spirits per caterer's list · deliver pre-chilled day-of"},
+  {id:10, title:"Confirm tent layout with Evan (One for the Books)", cat:"now", group:"3–4 Months Out", meta:"Updated layout + rain plan sent 3/13 · awaiting your sign-off", email:true},
+  {id:11, title:"Finalize rentals quote (PEAK Event Services)", cat:"now", group:"3–4 Months Out", meta:"Evan sent updated quote 3/11 (napkins added) · linens, chargers, glassware, bars, tables, chairs", email:true},
+  {id:12, title:"Confirm restroom trailer with Loo Haven", cat:"now", group:"3–4 Months Out", meta:"In progress per checklist"},
+  {id:13, title:"Transportation — follow up with Evan on quotes", cat:"now", group:"3–4 Months Out", meta:"~60 guests on island · Evan requesting quotes"},
+  {id:14, title:"Finalize invitation proof and mail invites", cat:"now", group:"3–4 Months Out", meta:"Proof ordered and shipped (Order #46581046) · Zola's Melissa offered wording help", email:true},
+  {id:15, title:"Finalize wedding gift registry", cat:"now", group:"3–4 Months Out", meta:"In progress · Note: Le Creuset item out of stock — consider swapping", email:true},
+  {id:16, title:"Book honeymoon", cat:"now", group:"3–4 Months Out", meta:"TBD on destination/dates"},
+  {id:17, title:"Create initial wedding timeline", cat:"now", group:"3–4 Months Out", meta:"4-month checklist item"},
+  {id:18, title:"Asher Gardner — await and review full shot list details", cat:"now", group:"3–4 Months Out", meta:"Both questionnaire forms submitted 3/14 · Asher said more info coming this week", email:true},
+  {id:19, title:"Send rehearsal dinner invitations", cat:"soon", group:"2–3 Months Out", meta:"Rehearsal dinner: Boat Shed, Mystic Seaport @ 5PM"},
+  {id:20, title:"Dress fitting", cat:"soon", group:"2–3 Months Out", meta:"3-month checklist item"},
+  {id:21, title:"Finalize ceremony details", cat:"soon", group:"2–3 Months Out", meta:"Vows, readings, officiant script, processional · Officiant: Ruchit Patel (brother-in-law)"},
+  {id:22, title:"Order guest favors & welcome gifts", cat:"soon", group:"2–3 Months Out", meta:"3-month checklist item"},
+  {id:23, title:"Finalize decor & personal items", cat:"soon", group:"2–3 Months Out", meta:"3-month checklist item"},
+  {id:24, title:"3-month check-in meeting with Evan", cat:"soon", group:"2–3 Months Out", meta:"Schedule with One for the Books Events"},
+  {id:25, title:"Marriage license", cat:"later", group:"1–2 Months Out", meta:"Must be obtained within 60 days of 7/4 in Stonington, CT"},
+  {id:26, title:"Wedding party gifts", cat:"later", group:"1–2 Months Out", meta:"2-month checklist item"},
+  {id:27, title:"Touch base with all vendors", cat:"later", group:"1–2 Months Out", meta:"2-month checklist item"},
+  {id:28, title:"Songs & formalities to Night Shift Entertainment", cat:"later", group:"1–2 Months Out", meta:"2-month checklist item"},
+  {id:29, title:"Ceremony song list to Golden Scroll Soloists", cat:"later", group:"1–2 Months Out", meta:"2-month checklist item"},
+  {id:30, title:"Shot list for Asher Gardner", cat:"later", group:"1–2 Months Out", meta:"2-month checklist item"},
+  {id:31, title:"Seating chart / floor plan", cat:"later", group:"1 Month Out", meta:"RSVPs coming in via Zola · several already confirmed", email:true},
+  {id:32, title:"Final dress fitting", cat:"later", group:"1 Month Out", meta:"1-month checklist item"},
+  {id:33, title:"Final vendor payments & organize tips", cat:"later", group:"1 Month Out", meta:"1-month checklist item"},
+  {id:34, title:"Confirm overnight accommodations for bride & groom", cat:"later", group:"1 Month Out", meta:"Room assignment thread active · Lance Patel confirmed 7/2–7/5", email:true},
+  {id:35, title:"Finalize timeline with all vendors (2 weeks out)", cat:"later", group:"2 Weeks Out", meta:"Confirm with every vendor"},
+  {id:36, title:"Organize important contact sheet", cat:"later", group:"2 Weeks Out", meta:"2-weeks checklist item"},
+  {id:37, title:"Touch up hair color", cat:"later", group:"2 Weeks Out", meta:"2-weeks checklist item"},
+  {id:38, title:"Confirm final guest list", cat:"later", group:"2 Weeks Out", meta:"2-weeks checklist item"},
+  {id:39, title:"Mani/pedi appointment", cat:"later", group:"Final Week", meta:"Final week checklist item"},
+  {id:40, title:"Clean ring at jeweler", cat:"later", group:"Final Week", meta:"Final week checklist item"},
+];
+
+const VENDORS = [
+  {name:"85th Day Group", role:"Caterer", contact:"Sarah Williams / Fiona", detail:"Menu fully locked in · proposal v4 sent 3/12", action:"Approve in HoneyBook", status:"amber"},
+  {name:"Asher Gardner", role:"Photographer", contact:"asher@ashergardner.com", detail:"Questionnaire forms completed 3/14 · more details coming", status:"green"},
+  {name:"Night Shift Entertainment", role:"Band", contact:"", detail:"Contracted", status:"green"},
+  {name:"Sperry Tents", role:"Tents, Dance Floor, Lighting", contact:"via Evan", detail:"Layout updated 3/13 · awaiting sign-off", action:"Confirm layout", status:"amber"},
+  {name:"Hana Floral", role:"Florist", contact:"", detail:"Contracted", status:"green"},
+  {name:"Simply Gorgeous by Erin", role:"Hair & Makeup", contact:"Erin Infantino", detail:"Trial: April 17 @ 11AM · $400 payment overdue · proposal changes pending", action:"Pay $400 + accept changes", status:"red"},
+  {name:"Zest Fresh Pastry", role:"Wedding Cake", contact:"Gabriella Withrow · zest@zestfreshpastry.com", detail:"Proposal sent 3/22 · 3-tier Persian-inspired cake, berries + daisies · $100 deposit to hold", action:"Sign proposal + pay deposit", status:"amber"},
+  {name:"Molly Mia", role:"Videographer", contact:"", detail:"Contracted", status:"green"},
+  {name:"Golden Scroll Soloists", role:"Ceremony Musicians", contact:"", detail:"Contracted · songs due 2 months out", status:"green"},
+  {name:"Loo Haven", role:"Restroom Trailer", contact:"", detail:"In progress", status:"amber"},
+  {name:"Rebekah Brooks Jewelry", role:"Wedding Bands", contact:"Isabel Ralston · isabel@rebekahbrooks.com", detail:"Consultation not yet booked · good availability", action:"Schedule consult", status:"amber"},
+  {name:"One for the Books Events", role:"Wedding Planner", contact:"Evan Chestnutt · letsplan@oneforthebooks-events.com", detail:"Active · coordinating transportation, rentals, tent, all vendors", status:"green"},
+];
+
+const WEEKEND_EVENTS = [
+  {day:"Thu Jul 2", title:"Guests Arrive", detail:"On-site overnight guests begin arriving · room assignments coordinated", highlight:false},
+  {day:"Fri Jul 3 — Morning", title:"Ceremony Rehearsal", detail:"~10AM · location TBD at Elihu Island", highlight:false},
+  {day:"Fri Jul 3 — Afternoon", title:"Field Day", detail:"All-guest outdoor activities on the island", highlight:false},
+  {day:"Fri Jul 3 — 5:00 PM", title:"Rehearsal Dinner", detail:"Boat Shed · Mystic Seaport", highlight:true},
+  {day:"Fri Jul 3 — 6:30 PM", title:"Welcome Party", detail:"Boat Shed · Mystic Seaport", highlight:true},
+  {day:"Sat Jul 4 — 4:00 PM", title:"Wedding Ceremony", detail:"Officiant: Ruchit Patel (brother-in-law of bride) · Ceremony musicians: Golden Scroll Soloists · ~80 guests", highlight:true},
+  {day:"Sat Jul 4 — Evening", title:"Reception & Dinner", detail:"Dinner, dancing, open bar · Late night snack: grilled cheese & soft pretzels with mustards", highlight:false},
+  {day:"Sat Jul 4 — 11:00 PM", title:"Reception ends", detail:"", highlight:false},
+  {day:"Sun Jul 5", title:"Guests Depart", detail:"On-site overnight guests check out", highlight:false},
+];
+
+const MENU_SECTIONS = [
+  {title:"Hors d'Oeuvres — Passed", items:[
+    "Mini lobster salad roll with lemon aioli, celery salt & farm greens",
+    "Roasted seacoast mushroom on sourdough with Mystic Cheese Co. Melinda Mae, balsamic & herbs",
+    "Mini buttermilk biscuit with slow smoked pork, house ranch & pickled onion",
+    "Garlic & chili marinated Stonington red shrimp skewers",
+  ]},
+  {title:"Hors d'Oeuvres — Stationary", items:[
+    "Oyster Club Raw Bar: local oysters, housemade mignonette, cocktail sauce, lemon",
+    "Persian Station: warm pita, kashk bademjoon, shirazi salad, dolmeh grape leaves, salad olivieh, marinated olives & hummus",
+  ]},
+  {title:"First Course", items:[
+    "Heirloom tomato salad with whipped ricotta, balsamic, basil, olive oil & sea salt",
+    "Basket of housemade sourdough & cornbread with seasonal butter",
+  ]},
+  {title:"Entrées (pre-selected)", items:[
+    "Slow roasted NY Strip with Stone Acres Farm herb & garlic chimichurri, creamy potato purée, roasted seasonal vegetables",
+    "Pan roasted local sea bass with saffron marinade, quinoa & Stone Acres Farm vegetable salad with yogurt sauce",
+    "Seasonal Stone Acres vegetable creamy lasagna with housemade béchamel (vegetarian)",
+  ]},
+  {title:"Dessert & Coffee", items:[
+    "Dessert station: housemade baklava, pistachio & cardamom cupcakes, flourless chocolate cake",
+    "Wedding cake: Zest Fresh Pastry — 3-tier Persian-inspired (pistachio/fig, champagne/strawberry, chocolate/orange mascarpone)",
+    "GIV regular & decaf coffee · Harney & Sons tea assortment",
+  ]},
+  {title:"Late Night Snack", items:["Classic grilled cheese & soft pretzels with mustards"]},
+  {title:"Signature Cocktails", items:[
+    "Blueberry vodka lemonade",
+    "Dirty martini",
+    "Espresso martini (~100 servings passed on dance floor)",
+  ]},
+];
+
+const PAYMENTS = [
+  {date:'2025-10-02', vendor:'Asher Gardner Photography',  desc:'Retainer — 30%',                  amount:4290.00,  status:'paid'},
+  {date:'2025-10-02', vendor:'Night Shift Entertainment',  desc:'Deposit — 50%',                   amount:9250.00,  status:'paid'},
+  {date:'2025-10-15', vendor:'Hana Floral Design',         desc:'Deposit — 30%',                   amount:4926.93,  status:'paid'},
+  {date:'2025-11-06', vendor:'Simply Gorgeous by Erin',    desc:'Retainer — 25%',                  amount:517.50,   status:'paid'},
+  {date:'2025-11-20', vendor:'One for the Books Events',   desc:'Deposit — 25%',                   amount:1850.00,  status:'paid'},
+  {date:'2025-11-21', vendor:'Sperry Tents',               desc:'Deposit — 50%',                   amount:7636.32,  status:'paid'},
+  {date:'2025-12-02', vendor:'85th Day Group',             desc:'1st Installment',                 amount:1500.00,  status:'paid'},
+  {date:'2026-01-04', vendor:'Asher Gardner Photography',  desc:'2nd Payment — 30%',               amount:4290.00,  status:'paid'},
+  {date:'2026-01-04', vendor:'One for the Books Events',   desc:'6-month Installment — 25%',       amount:1850.00,  status:'paid'},
+  {date:'2026-01-19', vendor:'Specialty Transportation',   desc:'Deposit — 50%',                   amount:1595.00,  status:'paid'},
+  {date:'2026-03-01', vendor:'Simply Gorgeous by Erin',    desc:'2nd Payment',                     amount:517.50,   status:'overdue'},
+  {date:'2026-04-04', vendor:'One for the Books Events',   desc:'3-month Installment — 25%',       amount:1850.00,  status:'upcoming'},
+  {date:'2026-04-05', vendor:'85th Day Group',             desc:'2nd Installment — 90 days prior', amount:15765.05, status:'upcoming'},
+  {date:'2026-06-04', vendor:'Asher Gardner Photography',  desc:'Final Payment — 40%',             amount:5720.00,  status:'upcoming'},
+  {date:'2026-06-04', vendor:'Specialty Transportation',   desc:'Balance',                         amount:1695.00,  status:'upcoming'},
+  {date:'2026-06-06', vendor:'Hana Floral Design',         desc:'Final Balance — 70%',             amount:11496.16, status:'upcoming'},
+  {date:'2026-06-20', vendor:'One for the Books Events',   desc:'Final Payment — 25%',             amount:1850.00,  status:'upcoming'},
+  {date:'2026-06-20', vendor:'Simply Gorgeous by Erin',    desc:'Final Payment',                   amount:1035.00,  status:'upcoming'},
+  {date:'2026-06-24', vendor:'85th Day Group',             desc:'Final Installment — 10 days prior',amount:15765.05,status:'upcoming'},
+  {date:'2026-06-24', vendor:'Night Shift Entertainment',  desc:'Balance — 50%',                   amount:9250.00,  status:'upcoming'},
+  {date:'2026-07-04', vendor:'Sperry Tents',               desc:'Balance — 50% (due on delivery)', amount:7636.32,  status:'upcoming'},
+];
+
+/* ─── STATE ─── */
+const done = new Set(JSON.parse(localStorage.getItem('ba-done') || '[]').map(Number));
+let taskFilter = 'all';
+
+/* ─── INIT ─── */
+function init() {
+  renderHero();
+  renderTasks();
+  renderVendors();
+  renderWeekend();
+  renderMenu();
+  renderPayments();
+  const saved = localStorage.getItem('ba-notes');
+  if(saved) document.getElementById('notesArea').value = saved;
+}
+
+/* ─── HERO ─── */
+function renderHero() {
+  const total = TASKS.length;
+  const doneCount = TASKS.filter(t => done.has(t.id)).length;
+  const urgentCount = TASKS.filter(t => t.cat === 'urgent' && !done.has(t.id)).length;
+  const openCount = total - doneCount;
+  const days = Math.round((new Date('2026-07-04') - new Date()) / 86400000);
+  document.getElementById('heroStats').innerHTML = `
+    <div class="hero-stat"><div class="hero-stat-num">${days}</div><div class="hero-stat-label">Days to go</div></div>
+    <div class="hero-stat"><div class="hero-stat-num urgent">${urgentCount}</div><div class="hero-stat-label">Urgent</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">${openCount}</div><div class="hero-stat-label">Open tasks</div></div>
+    <div class="hero-stat"><div class="hero-stat-num done">${doneCount}</div><div class="hero-stat-label">Completed</div></div>
+  `;
+  const pct = Math.round((doneCount / total) * 100);
+  document.getElementById('heroProgress').style.width = pct + '%';
+}
+
+/* ─── TASKS ─── */
+const FILTERS = [
+  {id:'all', label:'All open'},
+  {id:'urgent', label:'🔴 Urgent'},
+  {id:'now', label:'3–4 months'},
+  {id:'soon', label:'2–3 months'},
+  {id:'later', label:'1–2 months'},
+  {id:'done', label:'Completed'},
+];
+
+function catPill(cat) {
+  if(cat==='urgent') return '<span class="pill pill-red">urgent</span>';
+  if(cat==='now') return '<span class="pill pill-gold">3–4 mo</span>';
+  if(cat==='soon') return '<span class="pill pill-blush">2–3 mo</span>';
+  if(cat==='later') return '<span class="pill pill-navy">later</span>';
+  return '';
+}
+
+function renderTasks() {
+  const search = (document.getElementById('taskSearch')?.value || '').toLowerCase();
+
+  // filters
+  document.getElementById('taskFilters').innerHTML = FILTERS.map(f =>
+    `<button class="filter-chip${taskFilter===f.id?' active':''}" onclick="setTaskFilter('${f.id}',this)">${f.label}</button>`
+  ).join('');
+
+  let visible = TASKS;
+  if(taskFilter === 'done') visible = TASKS.filter(t => done.has(t.id));
+  else {
+    visible = TASKS.filter(t => !done.has(t.id));
+    if(taskFilter !== 'all') visible = visible.filter(t => t.cat === taskFilter);
+  }
+  if(search) visible = visible.filter(t =>
+    t.title.toLowerCase().includes(search) || t.meta.toLowerCase().includes(search)
+  );
+
+  document.getElementById('taskMeta').textContent = `${visible.length} item${visible.length!==1?'s':''}`;
+
+  if(!visible.length) {
+    document.getElementById('taskList').innerHTML = `<div class="empty"><div class="empty-icon">✓</div><div class="empty-text">Nothing here — you're on top of it!</div></div>`;
+    return;
+  }
+
+  const groups = {};
+  visible.forEach(t => {
+    const g = taskFilter === 'done' ? 'Completed' : t.group;
+    if(!groups[g]) groups[g] = [];
+    groups[g].push(t);
+  });
+
+  let html = '';
+  for(const [g, items] of Object.entries(groups)) {
+    html += `<div class="task-group"><div class="task-group-label">${e(g)}</div>`;
+    items.forEach(t => {
+      const isDone = done.has(t.id);
+      html += `<div class="task-card${isDone?' done':''}">
+        <div class="task-check${isDone?' checked':''}" onclick="toggleTask(${t.id})">${isDone?'✓':''}</div>
+        <div class="task-body">
+          <div class="task-title-row">
+            <span class="task-title">${e(t.title)}</span>
+            ${(taskFilter==='all'||taskFilter==='done')?catPill(t.cat):''}
+            ${t.email?'<span class="task-email-tag">from email</span>':''}
+          </div>
+          <div class="task-meta">${e(t.meta)}</div>
+        </div>
+      </div>`;
+    });
+    html += '</div>';
+  }
+  document.getElementById('taskList').innerHTML = html;
+}
+
+function setTaskFilter(f) {
+  taskFilter = f;
+  renderTasks();
+}
+
+function toggleTask(id) {
+  if(done.has(id)) done.delete(id); else done.add(id);
+  localStorage.setItem('ba-done', JSON.stringify([...done]));
+  renderHero();
+  renderTasks();
+}
+
+/* ─── VENDORS ─── */
+function renderVendors() {
+  const dotClass = {green:'dot-green', amber:'dot-amber', red:'dot-red'};
+  document.getElementById('vendorGrid').innerHTML = VENDORS.map(v => `
+    <div class="vendor-card">
+      <div class="vendor-header">
+        <span class="vendor-status-dot ${dotClass[v.status]}"></span>
+        <span class="vendor-name">${e(v.name)}</span>
+      </div>
+      <div class="vendor-role">${e(v.role)}</div>
+      ${v.contact ? `<div class="vendor-detail">${e(v.contact)}</div>` : ''}
+      <div class="vendor-detail">${e(v.detail)}</div>
+      ${v.action ? `<div class="vendor-action${v.status==='amber'?' note':''}">${e(v.action)}</div>` : ''}
+    </div>
+  `).join('');
+}
+
+/* ─── WEEKEND ─── */
+function renderWeekend() {
+  document.getElementById('weekendTimeline').innerHTML = WEEKEND_EVENTS.map(e => `
+    <div class="tl-item${e.highlight?' highlight':''}">
+      <div class="tl-dot"></div>
+      <div class="tl-day">${e.day}</div>
+      <div class="tl-event">
+        <div class="tl-event-title">${e.title}</div>
+        ${e.detail ? `<div class="tl-event-detail">${e.detail}</div>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ─── PAYMENTS ─── */
+const PAY_FILTERS = [
+  {id:'all',      label:'All'},
+  {id:'upcoming', label:'Upcoming'},
+  {id:'overdue',  label:'Overdue'},
+  {id:'paid',     label:'Paid'},
+];
+let payFilter = 'all';
+
+function fmtAmt(n) {
+  return '$' + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+function fmtDate(d) {
+  return new Date(d + 'T00:00:00').toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+}
+function payStatusInfo(p) {
+  if(p.status === 'paid')    return {label:'paid',     cls:'status-paid'};
+  if(p.status === 'overdue') return {label:'overdue',  cls:'status-overdue'};
+  const today = new Date(); today.setHours(0,0,0,0);
+  const days = Math.round((new Date(p.date + 'T00:00:00') - today) / 86400000);
+  if(days <= 21) return {label:'due soon', cls:'status-soon'};
+  return {label:'upcoming', cls:'status-upcoming'};
+}
+
+function renderPayments() {
+  const totalContract  = PAYMENTS.reduce((s,p) => s + p.amount, 0);
+  const totalPaid      = PAYMENTS.filter(p => p.status==='paid').reduce((s,p) => s+p.amount, 0);
+  const totalOverdue   = PAYMENTS.filter(p => p.status==='overdue').reduce((s,p) => s+p.amount, 0);
+  const totalRemaining = PAYMENTS.filter(p => p.status!=='paid').reduce((s,p) => s+p.amount, 0);
+
+  let summaryHtml = `
+    <div class="pay-stat"><div class="pay-stat-num">${fmtAmt(totalContract)}</div><div class="pay-stat-label">Total Budget</div></div>
+    <div class="pay-stat"><div class="pay-stat-num clr-paid">${fmtAmt(totalPaid)}</div><div class="pay-stat-label">Paid to Date</div></div>
+    <div class="pay-stat"><div class="pay-stat-num clr-remaining">${fmtAmt(totalRemaining)}</div><div class="pay-stat-label">Still Owed</div></div>
+  `;
+  if(totalOverdue > 0) {
+    summaryHtml += `<div class="pay-stat"><div class="pay-stat-num clr-overdue">${fmtAmt(totalOverdue)}</div><div class="pay-stat-label">Overdue</div></div>`;
+  }
+  document.getElementById('paySummary').innerHTML = summaryHtml;
+
+  document.getElementById('payFilters').innerHTML = PAY_FILTERS.map(f =>
+    `<button class="filter-chip${payFilter===f.id?' active':''}" onclick="setPayFilter('${f.id}')">${f.label}</button>`
+  ).join('');
+
+  let rows = [...PAYMENTS].sort((a,b) => new Date(a.date) - new Date(b.date));
+  if(payFilter === 'upcoming') rows = rows.filter(p => p.status !== 'paid');
+  else if(payFilter === 'overdue') rows = rows.filter(p => p.status === 'overdue');
+  else if(payFilter === 'paid') rows = rows.filter(p => p.status === 'paid');
+
+  document.getElementById('payMeta').textContent = `${rows.length} payment${rows.length!==1?'s':''}`;
+
+  document.getElementById('payTableBody').innerHTML = rows.map(p => {
+    const st = payStatusInfo(p);
+    return `<tr>
+      <td><div class="pay-vendor">${e(p.vendor)}</div></td>
+      <td><div class="pay-date-cell">${fmtDate(p.date)}</div></td>
+      <td><div class="pay-desc">${e(p.desc)}</div></td>
+      <td><div class="pay-amount-cell${p.status==='overdue'?' clr-overdue':''}">${fmtAmt(p.amount)}</div></td>
+      <td><span class="status-badge ${st.cls}">${st.label}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function setPayFilter(f) {
+  payFilter = f;
+  renderPayments();
+}
+
+/* ─── MENU ─── */
+function renderMenu() {
+  let html = `<div class="info-box"><strong>Status:</strong> Menu locked in with 85th Day Group · Proposal v4 needs approval in HoneyBook · Wedding cake proposal from Zest needs $100 deposit to hold date.</div>`;
+  MENU_SECTIONS.forEach(s => {
+    html += `<div class="task-group"><div class="task-group-label">${s.title}</div>`;
+    s.items.forEach(item => {
+      html += `<div class="task-card" style="padding: 10px 14px;">
+        <div class="task-body"><div class="task-title" style="font-size:13px;">${item}</div></div>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  document.getElementById('menuContent').innerHTML = html;
+}
+
+/* ─── NAV ─── */
+function switchPanel(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ─── NOTES ─── */
+function saveNotes() {
+  localStorage.setItem('ba-notes', document.getElementById('notesArea').value);
+}
+
+init();
+</script>
+</body>
+</html>
